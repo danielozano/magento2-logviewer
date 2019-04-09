@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Danielozano_LogViewer::system_logs" title="Logs" translate="title" module="Danielozano_LogViewer" resource="Magento_Backend::admin" parent="Magento_Backend::system" sortOrder="100"/>
+        <add id="Danielozano_LogViewer::system_logs_view" title="View Logs" translate="title" module="Danielozano_LogViewer" resource="Magento_Backend::admin" action="logview/log/index" parent="Danielozano_LogViewer::system_logs" sortOrder="10"/>
+    </menu>
+</config>
