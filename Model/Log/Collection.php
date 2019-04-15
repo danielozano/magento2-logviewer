@@ -13,25 +13,40 @@ class Collection extends \Magento\Framework\Data\Collection\Filesystem
     protected $filesystem;
 
     /**
+     * @var \Magento\Framework\Encryption\Encryptor
+     */
+    protected $encrypt;
+
+    /**
      * Collection constructor.
      * @param EntityFactoryInterface $entityFactory
      * @param \Magento\Framework\Filesystem $filesystem
+     * @param \Magento\Framework\Encryption\Encryptor $encrypt
      * @throws \Exception
      */
     public function __construct(
         EntityFactoryInterface $entityFactory,
-        \Magento\Framework\Filesystem $filesystem
+        \Magento\Framework\Filesystem $filesystem,
+        \Magento\Framework\Encryption\Encryptor $encrypt
     ) {
         parent::__construct($entityFactory);
         $this->filesystem = $filesystem;
+        $this->encrypt = $encrypt;
         $logDir = $this->filesystem->getDirectoryRead(DirectoryList::LOG);
         $this->addTargetDir(
             $logDir->getAbsolutePath()
         )->setDirsFirst(true);
     }
 
-    public function addFieldToSelect($field, $alias = null)
+    /**
+     * @param string $filename
+     * @return array
+     */
+    protected function _generateRow($filename)
     {
-        return $this;
+        /** @var array $row */
+        $row = parent::_generateRow($filename);
+        $row['encoded_filename'] = $this->encrypt->encrypt($filename);
+        return $row;
     }
 }
