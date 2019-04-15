@@ -9,6 +9,11 @@ use \Magento\Framework\App\ResponseInterface;
 class Download extends Action
 {
     /**
+     * Authorization level of a basic admin session
+     */
+    const ADMIN_RESOURCE = 'Danielozano_LogViewer::download';
+
+    /**
      * @var Encryptor
      */
     protected $encrypt;
