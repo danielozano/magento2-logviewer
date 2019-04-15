@@ -27,7 +27,7 @@
                             <argument name="type" xsi:type="string">number</argument>
                         </arguments>
                     </block>
-                    <block class="Magento\Backend\Block\Widget\Grid\Column" name="adminhtml.logviewer.grid.columnSet.fileName" as="fileName">
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" name="adminhtml.logviewer.grid.columnSet.fileName" as="filename">
                         <arguments>
                             <argument name="header" xsi:type="string" translate="true">Filename</argument>
                             <argument name="index" xsi:type="string">basename</argument>
@@ -36,7 +36,25 @@
                             <argument name="header_css_class" xsi:type="string">col-name</argument>
                         </arguments>
                     </block>
-                    <block class="Magento\Backend\Block\Widget\Grid\Column" name="adminhtml.logviewer.grid.columnSet.action.download" as="downloadAction">
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" name="adminhtml.logviewer.grid.columnSet.size" as="file-size">
+                        <arguments>
+                            <argument name="header" xsi:type="string">File Size (KB)</argument>
+                            <argument name="index" xsi:type="string">size</argument>
+                            <argument name="type" xsi:type="string">number</argument>
+                            <argument name="column_css_class" xsi:type="string">col-name</argument>
+                            <argument name="header_css_class" xsi:type="string">col-name</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" name="adminhtml.logviewer.grid.columnSet.mdate" as="modification-date">
+                        <arguments>
+                            <argument name="header" xsi:type="string">Modification Date</argument>
+                            <argument name="index" xsi:type="string">modification_date</argument>
+                            <argument name="type" xsi:type="string">datetime</argument>
+                            <argument name="column_css_class" xsi:type="string">col-name</argument>
+                            <argument name="header_css_class" xsi:type="string">col-name</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" name="adminhtml.logviewer.grid.columnSet.action.download" as="download-action">
                         <arguments>
                             <argument name="header" xsi:type="string" translate="true">Download</argument>
                             <argument name="sortable" xsi:type="string">0</argument>

@@ -18,20 +18,36 @@ class Collection extends \Magento\Framework\Data\Collection\Filesystem
     protected $encrypt;
 
     /**
+     * @var \Magento\Framework\Filesystem\Driver\File
+     */
+    protected $fileDriver;
+
+    /**
+     * @var \Magento\Framework\Stdlib\DateTime\DateTime
+     */
+    protected $dateTime;
+
+    /**
      * Collection constructor.
      * @param EntityFactoryInterface $entityFactory
      * @param \Magento\Framework\Filesystem $filesystem
      * @param \Magento\Framework\Encryption\Encryptor $encrypt
+     * @param \Magento\Framework\Filesystem\Driver\File $fileDriver
+     * @param \Magento\Framework\Stdlib\DateTime\DateTime $dateTime
      * @throws \Exception
      */
     public function __construct(
         EntityFactoryInterface $entityFactory,
         \Magento\Framework\Filesystem $filesystem,
-        \Magento\Framework\Encryption\Encryptor $encrypt
+        \Magento\Framework\Encryption\Encryptor $encrypt,
+        \Magento\Framework\Filesystem\Driver\File $fileDriver,
+        \Magento\Framework\Stdlib\DateTime\DateTime $dateTime
     ) {
-        parent::__construct($entityFactory);
         $this->filesystem = $filesystem;
         $this->encrypt = $encrypt;
+        $this->fileDriver = $fileDriver;
+        $this->dateTime = $dateTime;
+        parent::__construct($entityFactory);
         $logDir = $this->filesystem->getDirectoryRead(DirectoryList::LOG);
         $this->addTargetDir(
             $logDir->getAbsolutePath()
@@ -41,12 +57,19 @@ class Collection extends \Magento\Framework\Data\Collection\Filesystem
     /**
      * @param string $filename
      * @return array
+     * @throws \Magento\Framework\Exception\FileSystemException
      */
     protected function _generateRow($filename)
     {
         /** @var array $row */
         $row = parent::_generateRow($filename);
+        /** @var array $fileData */
+        $fileData = $this->fileDriver->stat($filename);
+
         $row['encoded_filename'] = $this->encrypt->encrypt($filename);
+        $row['size'] = number_format($fileData['size'] / 1024, 2, '.', '');
+        $row['modification_date'] = $this->dateTime->gmtDate(null, $fileData['mtime']);
+
         return $row;
     }
 }
