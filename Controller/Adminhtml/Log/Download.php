@@ -1,4 +1,8 @@
 <?php
+/**
+ * @copyright Copyright © 2019 Daniel Lozano. All rights reserved.
+ * @author    dn.lozano.m@gmail.com
+ */
 
 namespace Danielozano\LogViewer\Controller\Adminhtml\Log;
 
@@ -6,6 +10,10 @@ use Magento\Backend\App\Action;
 use Magento\Framework\Encryption\Encryptor;
 use \Magento\Framework\App\ResponseInterface;
 
+/**
+ * Class Download
+ * @package Danielozano\LogViewer\Controller\Adminhtml\Log
+ */
 class Download extends Action
 {
     /**

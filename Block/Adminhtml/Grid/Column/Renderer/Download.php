@@ -1,4 +1,8 @@
 <?php
+/**
+ * @copyright Copyright © 2019 Daniel Lozano. All rights reserved.
+ * @author    dn.lozano.m@gmail.com
+ */
 
 namespace Danielozano\LogViewer\Block\Adminhtml\Grid\Column\Renderer;
 
