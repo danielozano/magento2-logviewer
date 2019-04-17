@@ -1,0 +1,25 @@
+{
+    "name": "danielozano/magento2-module-logviewer",
+    "description": "Magento 2 Module for viewing application log content",
+    "keywords": ["magento", "magento2", "composer", "log"],
+    "require": {
+        "php": ">=7.0.0",
+        "magento/framework": "~100.0|~101.0"
+    },
+    "type": "magento2-module",
+    "license": "AGPL-3.0-or-later",
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "\\Danielozano\\LogViewer\\": ""
+        }
+    },
+    "authors": [
+        {
+            "name": "Daniel Lozano",
+            "email": "dn.lozano.m@gmail.com"
+        }
+    ]
+}
