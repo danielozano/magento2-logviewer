@@ -72,7 +72,7 @@ class Collection extends \Magento\Framework\Data\Collection\Filesystem
         $fileData = $this->fileDriver->stat($filename);
 
         $row['encoded_filename'] = $this->encrypt->encrypt($filename);
-        $row['size'] = number_format($fileData['size'] / 1024, 2, '.', '');
+        $row['size'] = number_format(($fileData['size'] / (1024 * 2)), 2, '.', '');
         $row['modification_date'] = $this->dateTime->gmtDate(null, $fileData['mtime']);
 
         return $row;
