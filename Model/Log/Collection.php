@@ -8,6 +8,11 @@ use Magento\Framework\Data\Collection\EntityFactoryInterface;
 class Collection extends \Magento\Framework\Data\Collection\Filesystem
 {
     /**
+     * @var string
+     */
+    protected $_itemObjectClass = \Danielozano\LogViewer\Model\File::class;
+
+    /**
      * @var \Magento\Framework\Filesystem
      */
     protected $filesystem;
