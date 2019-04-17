@@ -14,9 +14,10 @@
                     <arguments>
                         <argument name="id" xsi:type="string">logsGrid</argument>
                         <argument name="rowUrl" xsi:type="array">
-                            <item name="path" xsi:type="string">logview/*/view</item>
+                            <item name="path" xsi:type="string">logview/*/download</item>
                             <item name="extraParamsTemplate" xsi:type="array">
                                 <item name="file" xsi:type="string">getEncodedFilename</item>
+                                <item name="basename" xsi:type="string">getBasename</item>
                             </item>
                         </argument>
                     </arguments>
